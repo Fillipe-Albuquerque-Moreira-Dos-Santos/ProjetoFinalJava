@@ -23,7 +23,7 @@ public class TelaNovoUsuario extends JFrame implements ActionListener {
 	JLabel lblSenha;
 
 	public TelaNovoUsuario() {
-		setTitle("Sistema VoeArlines");
+		setTitle("Cadastro de Login");
 		setSize(500, 110);
 		// Gerenciador de Layout
 		getContentPane().setLayout(new GridLayout(3, 2));
@@ -63,8 +63,8 @@ public class TelaNovoUsuario extends JFrame implements ActionListener {
 		Usuario usuario = new Usuario();
 
 		if (e.getSource() == btnCadastrar) {
-			if (txtUsuario.getText().trim().isEmpty() && pwfSenha.getText().trim().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "É obrigatório preencher os campos");
+			if (txtUsuario.getText().trim().isEmpty() || pwfSenha.getText().trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "É obrigatório preencher todos os campos");
 			} else {
 				System.out.println("Botao clicado");
 				usuario.setLogin(txtUsuario.getText());

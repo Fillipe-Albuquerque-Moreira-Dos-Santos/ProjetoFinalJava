@@ -45,8 +45,7 @@ public class TelaLoginView extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JLabel imagem = new JLabel();
-		Icon fundo = new ImageIcon(
-				"C:\\Users\\Senhor Sheshomaru\\Desktop\\projetoavaliacaodois\\projetofinalvoearlinesoficial\\imagem\\aviao.jpg");
+		Icon fundo = new ImageIcon("aviao.jpg");
 		imagem.setIcon(fundo);
 		add(imagem);
 
@@ -120,7 +119,9 @@ public class TelaLoginView extends JFrame implements ActionListener {
 		TelaNovoUsuario novousuario = new TelaNovoUsuario();
 
 		if (e.getSource() == btnLogar) {
-
+			if (usuario.getText().trim().isEmpty() || senha.getText().trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Por Favor preencha todos os campos");		
+			}
 			if (dao.checkLogin(usuario.getText(), senha.getText())) {
 				JOptionPane.showMessageDialog(null, "Parabéns você foi logado com sucesso");
 				int input = JOptionPane.showConfirmDialog(null, "Deseja Cadastrar um novo usuário?");
