@@ -41,6 +41,7 @@ public class TelaAviaoView extends JFrame {
 		cadAeronaves.add(ca);
 		cadAeronaves.add(cadtipo);
 		sobre.add(sistema);
+		
 
 		ca.addActionListener(new ActionListener() {
 			TelaCadastroAvioesView telacadastro = new TelaCadastroAvioesView();
@@ -57,6 +58,16 @@ public class TelaAviaoView extends JFrame {
 				tela.setVisible(true);
 			}
 		});
+		
+		
+		sistema.addActionListener(new ActionListener() {
+			Sobre telasobre = new Sobre();
+
+			public void actionPerformed(ActionEvent e) {
+				telasobre.setVisible(true);
+			}
+		});	
+		
 	}
 
 }
