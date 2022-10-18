@@ -12,8 +12,14 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import br.com.voearlines.DAO.AeronaveDAO;
+import br.com.voearlines.DAO.TipoAeronaveDAO;
+import br.com.voearlines.model.ModeloAeronave;
+import br.com.voearlines.model.ModeloTipoAeronave;
 
 public class TelaCadastroAvioesView extends JFrame implements ActionListener {
 
@@ -21,7 +27,7 @@ public class TelaCadastroAvioesView extends JFrame implements ActionListener {
 	private JLabel lblNome, lblModelo, lblcodigo, lblDescricao;
 	private JTextField txtNome, txtModelo, txtCodigo;
 	private JComboBox jcbTipo;
-	private JButton btnLogar;
+	private JButton btnCadastrar;
 	private JButton btnLimpar;
 	/**
 	 * Autor Fillipe Albuquerque
@@ -50,7 +56,7 @@ public class TelaCadastroAvioesView extends JFrame implements ActionListener {
 		imagem.add(lblNome);
 
 		txtNome = new JTextField(100);
-		txtNome.setFont(new Font("Ubuntu", Font.BOLD, 50));
+		txtNome.setFont(new Font("Ubuntu", Font.BOLD, 15));
 		txtNome.setForeground(SystemColor.desktop);
 		txtNome.setBounds(312, 52, 170, 19);
 		contentPane.add(txtNome);
@@ -65,7 +71,7 @@ public class TelaCadastroAvioesView extends JFrame implements ActionListener {
 		imagem.add(lblModelo);
 
 		txtModelo = new JTextField(100);
-		txtModelo.setFont(new Font("Ubuntu", Font.BOLD, 50));
+		txtModelo.setFont(new Font("Ubuntu", Font.BOLD, 15));
 		txtModelo.setForeground(SystemColor.desktop);
 		txtModelo.setBounds(312, 100, 170, 19);
 		contentPane.add(txtModelo);
@@ -80,7 +86,7 @@ public class TelaCadastroAvioesView extends JFrame implements ActionListener {
 		imagem.add(lblcodigo);
 
 		txtCodigo = new JTextField(100);
-		txtCodigo.setFont(new Font("Ubuntu", Font.BOLD, 50));
+		txtCodigo.setFont(new Font("Ubuntu", Font.BOLD, 15));
 		txtCodigo.setForeground(SystemColor.desktop);
 		txtCodigo.setBounds(312, 150, 170, 19);
 		contentPane.add(txtCodigo);
@@ -93,7 +99,10 @@ public class TelaCadastroAvioesView extends JFrame implements ActionListener {
 		lblDescricao.setBounds(155, 200, 150, 20);
 		contentPane.add(lblDescricao);
 		imagem.add(lblDescricao);
-
+		
+		
+		
+		// Dados sobre o JComboBox
 		String[] tipos = { "Avião de Guerra","Avião Do Neymar" };
 		JComboBox comboBox = new JComboBox(tipos);
 		comboBox.setSelectedIndex(0);
@@ -102,19 +111,19 @@ public class TelaCadastroAvioesView extends JFrame implements ActionListener {
 		imagem.add(comboBox);
 
 		// Botões
-		btnLogar = new JButton("Logar");
+		btnCadastrar = new JButton("Cadastrar");
 		btnLimpar = new JButton("Limpar");
 		contentPane.add(btnLimpar);
 		add(btnLimpar);
 		imagem.add(btnLimpar);
 
 		// botão logar
-		btnLogar.setFont(new Font("Ubuntu", Font.BOLD, 15));
-		btnLogar.setForeground(SystemColor.desktop);
-		btnLogar.setBounds(260, 250, 100, 20);
-		contentPane.add(btnLogar);
-		imagem.add(btnLogar);
-		btnLogar.addActionListener(this);
+		btnCadastrar.setFont(new Font("Ubuntu", Font.BOLD, 15));
+		btnCadastrar.setForeground(SystemColor.desktop);
+		btnCadastrar.setBounds(260, 250, 100, 20);
+		contentPane.add(btnCadastrar);
+		imagem.add(btnCadastrar);
+		btnCadastrar.addActionListener(this);
 
 		//  botão Limpar
 
@@ -126,10 +135,33 @@ public class TelaCadastroAvioesView extends JFrame implements ActionListener {
 		btnLimpar.addActionListener(this);
 
 	}
+	
+	public void limparCampos() {
+		txtNome.setText("");
+		txtModelo.setText("");
+		txtCodigo.setText("");
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		AeronaveDAO dao = new AeronaveDAO();
+		ModeloAeronave modelo = new ModeloAeronave();
+
+		if (e.getSource() == btnCadastrar) {
+			if (txtNome.getText().trim().isEmpty() || txtModelo.getText().trim().isEmpty() || txtCodigo.getText().trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "É obrigatório preencher os campos");
+			} else {
+				System.out.println("Botao clicado");
+				modelo.setFabricante(txtNome.getText());
+				modelo.setModelo(txtModelo.getText());
+				modelo.setCodigo(txtCodigo.getText());
+				dao.cadastraTipoAeronave(modelo);
+				JOptionPane.showMessageDialog(null,"O avião foi cadastrado com sucesso no sistema VoeArlines");
+				limparCampos();
+			}
+		} else {
+			limparCampos();
+		}
 
 	}
 

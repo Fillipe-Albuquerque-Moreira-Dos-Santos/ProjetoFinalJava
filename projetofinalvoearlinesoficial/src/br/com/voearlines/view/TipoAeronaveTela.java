@@ -76,8 +76,7 @@ public class TipoAeronaveTela extends JFrame implements ActionListener {
 				System.out.println("Botao clicado");
 				modelo.setDescricao(txtdescricao.getText());
 				dao.cadastraTipoAeronave(modelo);
-				JOptionPane.showMessageDialog(null,
-						"A descrição do avião foi cadastrado com sucesso no sistema VoeArlines");
+				JOptionPane.showMessageDialog(null,"A descrição do avião foi cadastrado com sucesso no sistema VoeArlines");
 				this.dispose();
 			}
 		} else {
