@@ -8,7 +8,7 @@ public class Principal {
 		// TODO Auto-generated method stub
 		TelaLoginView tela = new TelaLoginView();
 		ConnectionFactory.getConnection();
-		System.out.println("DEU CERTO A CONEXÃO MEU AMIGO. DEU CERTO");
+		System.out.println("DEU CERTO A CONEXÃO");
 		tela.setVisible(true);
 	}
 
