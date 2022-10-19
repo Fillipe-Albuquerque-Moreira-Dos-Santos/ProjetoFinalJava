@@ -29,17 +29,19 @@ public class TelaAviaoView extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		JMenu cadAeronaves = new JMenu("Cadastro de Aeronaves");
+		JMenu cadAeronaves = new JMenu("Aeronaves");
 		JMenu sobre = new JMenu("Sobre");
 		menuBar.add(cadAeronaves);
 		menuBar.add(sobre);
 
-		JMenuItem ca = new JMenuItem("Cadastrar Aeronave");
 		JMenuItem cadtipo = new JMenuItem("Cadastrar Tipo de Aeronave");
+		JMenuItem ca = new JMenuItem("Cadastrar Aeronave");
+		JMenuItem listar = new JMenuItem("Listar Aeronaves");
 		JMenuItem sistema = new JMenuItem("Sistema");
 
-		cadAeronaves.add(ca);
 		cadAeronaves.add(cadtipo);
+		cadAeronaves.add(ca);
+		cadAeronaves.add(listar);
 		sobre.add(sistema);
 		
 
